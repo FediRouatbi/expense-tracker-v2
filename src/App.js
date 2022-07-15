@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <div className="  py-16   h-screen">
         <Header />
-        <div className="mx-auto  w-11/12  overflow-auto h-full pt-3">
+        <div className="mx-auto  w-11/12  overflow-auto h-full py-3">
           <Routes>
             <Route path="/" element={<Profile />} />
             <Route path="/expenses" element={<Expenses />} />

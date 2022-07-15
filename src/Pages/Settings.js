@@ -31,12 +31,12 @@ const Settings = () => {
             className="input input-bordered input-sm w-full max-w-xs"
           />
         </div>
-        <button className="btn ">Change</button>
+        <button className="btn w-80">Change</button>
       </div>
 
       <a
         href="#my-modal-2"
-        class="btn btn-error btn-sm  absolute  bottom-0 right-0"
+        class="btn btn-error btn-sm  absolute  bottom-3 right-0"
       >
         Delete Account
       </a>
