@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 const Stats = () => {
   return (
-    <div class="stats bg-neutral text-primary-content justify-items-center mx-auto p-1 max-w-xl w-full flex">
+    <div class="stats bg-neutral text-primary-content justify-items-center mx-auto p-1 max-w-md w-full flex">
       <div class="stat p-1 justify-items-center grow w-full">
         <div class=" text-sm"> Balance</div>
         <div class="">$350,400</div>

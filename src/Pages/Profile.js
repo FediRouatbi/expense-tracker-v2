@@ -5,12 +5,12 @@ import Table from "../components/Table";
 import Chart from "../components/Chart";
 const Profile = () => {
   return (
-    <>
+    <div>
       <Stats />
       <Chart />
       <ShowAll />
       <Table />
-    </>
+    </div>
   );
 };
 

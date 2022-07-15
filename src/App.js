@@ -1,5 +1,6 @@
 import "./App.css";
 import Header from "./components/Header";
+import SideBar from "./components/SideBar";
 import Profile from "./Pages/Profile";
 import Expenses from "./Pages/Expenses";
 import Settings from "./Pages/Settings";
@@ -11,9 +12,10 @@ import ForgotPassword from "./Pages/ForgotPassword";
 function App() {
   return (
     <BrowserRouter>
-      <div className="  py-16   h-screen">
+      <div className="  py-16 md:pb-0  h-screen">
         <Header />
-        <div className="mx-auto  w-11/12  overflow-auto h-full py-3">
+        <div className="mx-auto  w-11/12  md:w-full overflow-auto h-full  md:pr-3 md:flex gap-2">
+          <SideBar />
           <Routes>
             <Route path="/" element={<Profile />} />
             <Route path="/expenses" element={<Expenses />} />
