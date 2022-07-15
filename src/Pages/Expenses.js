@@ -36,7 +36,7 @@ const Expenses = () => {
               />
             </div>
 
-            <div class="modal-action justify-between">
+            <div class="modal-action justify-between sm:justify-around">
               <button class="btn">Confirm</button>
               <label for="my-modal-6" class="btn">
                 Cancel

@@ -7,10 +7,9 @@ const Profile = () => {
   return (
     <>
       <Stats />
+      <Chart />
       <ShowAll />
       <Table />
-      <Chart />
-  
     </>
   );
 };
