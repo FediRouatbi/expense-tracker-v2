@@ -2,7 +2,7 @@ import React from "react";
 import Table from "../components/Table";
 const Expenses = () => {
   return (
-    <>
+    <div>
       <div className="text-right">
         <label for="my-modal-6" className="btn btn-info btn-sm ">
           Add
@@ -46,7 +46,7 @@ const Expenses = () => {
         </div>
       </div>
       <Table />
-    </>
+    </div>
   );
 };
 

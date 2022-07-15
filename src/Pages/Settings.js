@@ -2,8 +2,8 @@ import React from "react";
 
 const Settings = () => {
   return (
-    <div className="relative h-full">
-      <h1 id="security" className="mb-4">
+    <div className="grow">
+      <h1 id="security" className="mb-4 ">
         Security :{" "}
       </h1>
       <div className="flex flex-col gap-2 &>*:[flex]">
@@ -31,15 +31,14 @@ const Settings = () => {
             className="input input-bordered input-sm w-full max-w-xs"
           />
         </div>
-        <button className="btn w-80">Change</button>
+        <button className="btn max-w-xs">Change</button>
       </div>
 
-      <a
-        href="#my-modal-2"
-        class="btn btn-error btn-sm  absolute  bottom-3 right-0"
-      >
-        Delete Account
-      </a>
+      <div className=" pt-20 text-right">
+        <a href="#my-modal-2" class="btn btn-error btn-sm ">
+          Delete Account
+        </a>
+      </div>
 
       <div class="modal" id="my-modal-2">
         <div class="modal-box">
