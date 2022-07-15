@@ -3,7 +3,9 @@ import React from "react";
 const Settings = () => {
   return (
     <div className="relative h-full">
-      <h1 className="mb-4">Security : </h1>
+      <h1 id="security" className="mb-4">
+        Security :{" "}
+      </h1>
       <div className="flex flex-col gap-2 &>*:[flex]">
         <div>
           <div className="pb-2">Change Email :</div>
@@ -45,10 +47,10 @@ const Settings = () => {
             Are you sure you want to delete your Account ?
           </h3>
           <div class="modal-action justify-around">
-            <a href="#" class="btn">
+            <a href="settings" class="btn">
               Delete
             </a>
-            <a href="#" class="btn">
+            <a href="settings" class="btn">
               cancel
             </a>
           </div>

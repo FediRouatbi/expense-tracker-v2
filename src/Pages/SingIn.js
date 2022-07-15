@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const SingIn = () => {
   return (
     <div class="flex justify-center self-center  z-10">
@@ -31,9 +31,9 @@ const SingIn = () => {
           </div>
           <div class="flex items-center justify-between">
             <div class="text-sm">
-              <a href="#" class="text-green-400 hover:text-green-500">
+              <Link to="/forgot-password" class="text-green-400 hover:text-green-500">
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
           <div>
