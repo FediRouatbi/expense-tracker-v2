@@ -1,8 +1,8 @@
 import React from "react";
 
-const Table = () => {
+const RecuredExpenses = () => {
   return (
-    <div className="overflow-x-auto mt-3">
+    <div className="overflow-x-auto">
       <table className="bacjtable bacjtable-compact w-full">
         <thead>
           <tr className="[&>*]:text-left">
@@ -18,25 +18,10 @@ const Table = () => {
             <td>Canada</td>
             <td>Blue</td>
           </tr>
-          <tr>
-            <td>Ganderton</td>
-            <td>Canada</td>
-            <td>Blue</td>
-          </tr>
-          <tr>
-            <td>Ganderton</td>
-            <td>Canada</td>
-            <td>Blue</td>
-          </tr>
-          <tr>
-            <td>Ganderton</td>
-            <td>Canada</td>
-            <td>Blue</td>
-          </tr>
         </tbody>
       </table>
     </div>
   );
 };
 
-export default Table;
+export default RecuredExpenses;

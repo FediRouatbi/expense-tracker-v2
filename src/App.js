@@ -12,18 +12,20 @@ import ForgotPassword from "./Pages/ForgotPassword";
 function App() {
   return (
     <BrowserRouter>
-      <div className="  py-16 md:pb-0  h-screen">
+      <div className="  py-16 md:pb-0  h-screen ">
         <Header />
-        <div className="mx-auto  w-11/12  md:w-full overflow-auto h-full  md:pr-3 md:flex gap-2">
+        <div className="mx-auto  w-11/12  md:w-full  h-full   md:flex gap-2">
           <SideBar />
-          <Routes>
-            <Route path="/" element={<Profile />} />
-            <Route path="/expenses" element={<Expenses />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/signin" element={<SingIn />} />
-            <Route path="/signUp" element={<SignUp />} />
-            <Route path="/forgot-password" element={<ForgotPassword />} />
-          </Routes>
+          <div className="grow md:p-10 md:pb-0 overflow-auto h-full py-4">
+            <Routes>
+              <Route path="/" element={<Profile />} />
+              <Route path="/expenses" element={<Expenses />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/signin" element={<SingIn />} />
+              <Route path="/signUp" element={<SignUp />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+            </Routes>
+          </div>
         </div>
         <PhoneNav />
       </div>

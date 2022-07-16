@@ -52,8 +52,10 @@ export const data = {
 
 const Chart = () => {
   return (
-    <div className="mt-3 h-64">
-      <Bar options={(options, { maintainAspectRatio: false })} data={data} />
+    <div className="w-full">
+      <div className="mt-3 h-64 w-11/12 mx-auto">
+        <Bar options={(options, { maintainAspectRatio: false })} data={data} />
+      </div>
     </div>
   );
 };
