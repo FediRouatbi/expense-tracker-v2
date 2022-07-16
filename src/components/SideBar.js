@@ -1,23 +1,38 @@
 import React, { useState } from "react";
 import { FcHome, FcSettings, FcBinoculars } from "react-icons/fc";
 import { BiLogOut } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useTransition, animated } from "react-spring";
 const SideBar = () => {
+  const { pathname } = useLocation();
+
   const [open, setOpen] = useState(true);
-  console.log(open);
+  const transition = useTransition(open, {
+    from: { scale: 0.3, x: -50, opacity: 0 },
+    enter: { scale: 1, x: 0, opacity: 1 },
+    leave: {
+      scale: 0.3,
+      x: -50,
+      opacity: 0,
+    },
+  });
   return (
     <div
       className={`${
         open ? "" : "translate"
-      } relative hidden md:block w-64 duration-500  bg-gray-600 text-white font-bold p-4 `}
+      } relative hidden md:block w-44 lg:w-64 duration-500    bg-sky-100 text-black font-bold p-4`}
     >
-      <div className="absolute top-3 right-5  ">
+      <ul className={` flex flex-col   gap-4 text-lg h-full  `}>
         <label
-          class=" swap swap-rotate"
+          className={`${
+            open ? "self-end " : "self-center "
+          } swap swap-rotate  items-center mb-5 w-fit  `}
           onClick={() => setOpen((prev) => !prev)}
         >
           <svg
-            class={`${open ? "swap-on " : "swap-off"} fill-current swap-flip		`}
+            className={`${
+              open ? "swap-on " : "swap-off"
+            } fill-current swap-flip		`}
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
@@ -27,7 +42,9 @@ const SideBar = () => {
           </svg>
 
           <svg
-            class={`${open ? "swap-off" : "swap-on"} fill-current swap-flip		`}
+            className={`${
+              open ? "swap-off" : "swap-on"
+            } fill-current swap-flip		`}
             xmlns="http://www.w3.org/2000/svg"
             width="32"
             height="32"
@@ -36,40 +53,58 @@ const SideBar = () => {
             <polygon points="400 145.49 366.51 112 256 222.51 145.49 112 112 145.49 222.51 256 112 366.51 145.49 400 256 289.49 366.51 400 400 366.51 289.49 256 400 145.49" />
           </svg>
         </label>
-      </div>
-
-      <ul
-        className={`${
-          !open && "items-center"
-        } flex flex-col  gap-4 text-lg h-full pt-10 `}
-      >
         <Link
           to="/"
-          className="flex gap-2 items-center p-1  rounded hover:bg-red-300 "
+          className={`${
+            pathname === "/" && "bg-sky-200"
+          } flex gap-2 items-center p-1  rounded hover:bg-sky-200 `}
         >
-          <FcHome size={30} />
-          <span className={`${!open && "hidden"}`}> Profile</span>
+          <span className="">
+            <FcHome size={30} />
+          </span>
+          {transition((style, item) =>
+            item ? <animated.span style={style}> Profile</animated.span> : ""
+          )}
         </Link>
         <Link
           to="/expenses"
-          className="flex gap-2 items-center p-1 hover:bg-red-300 rounded"
+          className={`${
+            pathname === "/expenses" && "bg-sky-200"
+          } flex gap-2 items-center p-1  rounded hover:bg-sky-200 `}
         >
-          <FcBinoculars size={30} />
-          <span className={`${!open && "hidden"}`}> Expenses</span>
+          <span>
+            <FcBinoculars size={30} />
+          </span>
+
+          {transition((style, item) =>
+            item ? <animated.span style={style}> Expenses</animated.span> : ""
+          )}
         </Link>
         <Link
           to="/settings"
-          className="flex gap-2 items-center p-1 hover:bg-red-300 rounded"
+          className={`${
+            pathname === "/settings" && "bg-sky-200"
+          } flex gap-2 items-center p-1  rounded hover:bg-sky-200 `}
         >
-          <FcSettings size={30} />
-          <span className={`${!open && "hidden"}`}> Settings</span>
+          <span>
+            <FcSettings size={30} />
+          </span>
+
+          {transition((style, item) =>
+            item ? <animated.span style={style}> Settings</animated.span> : ""
+          )}
         </Link>
         <Link
-          to="/login"
-          className=" mt-auto flex gap-2 items-center p-1 hover:bg-red-300 rounded"
+          to="/signin"
+          className=" mt-auto flex gap-2 items-center p-1 hover:bg-sky-200 rounded"
         >
-          <BiLogOut size={30} />
-          <span className={`${!open && "hidden"}`}> Logout</span>
+          <span>
+            <BiLogOut size={30} />
+          </span>
+
+          {transition((style, item) =>
+            item ? <animated.span style={style}> Logout</animated.span> : ""
+          )}
         </Link>
       </ul>
     </div>

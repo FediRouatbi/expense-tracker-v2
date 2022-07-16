@@ -2,7 +2,7 @@ import React from "react";
 
 const Settings = () => {
   return (
-    <div className="grow">
+    <div className=" ">
       <h1 id="security" className="mb-4 ">
         Security :{" "}
       </h1>
@@ -35,23 +35,26 @@ const Settings = () => {
       </div>
 
       <div className=" pt-20 text-right">
-        <a href="#my-modal-2" class="btn btn-error btn-sm ">
+        <label
+          htmlFor="my-modal-6"
+          className="btn btn-error btn-sm modal-button"
+        >
           Delete Account
-        </a>
-      </div>
-
-      <div class="modal" id="my-modal-2">
-        <div class="modal-box">
-          <h3 class="font-bold text-lg">
-            Are you sure you want to delete your Account ?
-          </h3>
-          <div class="modal-action justify-around">
-            <a href="settings" class="btn">
-              Delete
-            </a>
-            <a href="settings" class="btn">
-              cancel
-            </a>
+        </label>
+        <input type="checkbox" id="my-modal-6" className="modal-toggle" />
+        <div className="modal" id="my-modal-6">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">
+              Are you sure you want to delete your Account ?
+            </h3>
+            <div className="modal-action justify-around">
+              <label htmlFor="my-modal-6" href="settings" className="btn">
+                Delete
+              </label>
+              <label htmlFor="my-modal-6" className="btn">
+                cancel
+              </label>
+            </div>
           </div>
         </div>
       </div>
