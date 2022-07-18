@@ -15,7 +15,7 @@ const PhoneNav = () => {
       if (el.href.slice(21) === location.pathname)
         el.classList.add("bg-sky-100");
     });
-  }, [location]);
+  }, []);
 
   const activateButton = (e) => {
     if (e.target === e.currentTarget) return;
