@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { GetData } from "../appContext/AppContext";
-import userImg from "./img/user.jpg";
+import userImg from "../img/user.jpg";
 const Header = () => {
   const { currentUser, signOutF } = GetData();
 
