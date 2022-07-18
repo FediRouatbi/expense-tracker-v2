@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { GetData } from "../appContext/AppContext";
-import userImg from "./img/user.jpg";
+import userImg from "../img/user.jpg";
 const Header = () => {
   const { currentUser, signOutF } = GetData();
 
@@ -23,7 +23,7 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
-              <img src={currentUser?.photoURL || userImg} alt="" />
+                <img src={currentUser?.photoURL || userImg} alt="" />
               </div>
             </label>
             <ul
