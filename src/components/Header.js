@@ -12,38 +12,36 @@ const Header = () => {
     e.currentTarget.blur();
   };
   return (
-    <div
-      className="navbar bg-base-100 fixed top-0 shadow-md font-bold z-20 h-16 px-8
-    "
-    >
-      <div className="flex-1  normal-case text-2xl pl-2">{path}</div>
-      <div className="flex-none gap-2">
-        <div className="dropdown dropdown-end">
-          <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="https://placeimg.com/80/80/people" alt="" />
-            </div>
-          </label>
-          <ul
-            tabIndex="0"
-            id="drop"
-            className="  shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-36 md:w-48 md:mt-2    "
-          >
-            <li className="">
-              <Link onClick={closeDropDown} to="/">
-                Profile
-              </Link>
-            </li>
-            <li>
-              <Link onClick={closeDropDown} to="/expenses">
-                Expenses
-              </Link>
-            </li>
-            <li>
-              <Link onClick={closeDropDown} to="/settings">
-                Settings
-              </Link>
-            </li>
+    currentUser && (
+      <div className="navbar bg-base-100 fixed top-0 shadow-md font-bold z-20 h-16 px-8">
+        <div className="flex-1  normal-case text-2xl pl-2">{path}</div>
+        <div className="flex-none gap-2">
+          <div className="dropdown dropdown-end">
+            <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
+              <div className="w-10 rounded-full">
+                <img src="https://placeimg.com/80/80/people" />
+              </div>
+            </label>
+            <ul
+              tabIndex="0"
+              id="drop"
+              className="  shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-36 md:w-48 md:mt-2    "
+            >
+              <li className="">
+                <Link onClick={closeDropDown} to="/">
+                  Profile
+                </Link>
+              </li>
+              <li>
+                <Link onClick={closeDropDown} to="/expenses">
+                  Expenses
+                </Link>
+              </li>
+              <li>
+                <Link onClick={closeDropDown} to="/settings">
+                  Settings
+                </Link>
+              </li>
 
             <li>
               <Link onClick={closeDropDown} to="/">
