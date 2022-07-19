@@ -21,7 +21,7 @@ const Settings = () => {
     const mail = newMailRef.current.value;
     const name = newNameRef.current.value;
     const password = newPasswordRef.current.value;
-    const image = newImgRef.current.files;
+    const image = newImgRef.current.files[0];
     try {
       if (image) {
         await updateProfileImage(image);
@@ -43,6 +43,8 @@ const Settings = () => {
         toast.success("Password change", toastOptions);
         newPasswordRef.current.value = "";
       }
+      if (!password && !mail && !name && !image)
+        throw Error("All fields are empty 🤔");
     } catch (err) {
       toast.error(err.message, toastOptions);
     }

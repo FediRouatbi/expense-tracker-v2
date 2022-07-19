@@ -2,20 +2,17 @@ import React, { useRef } from "react";
 import Table from "../components/Table";
 const Expenses = () => {
   const nameRef = useRef();
-  const categorieRef = useRef();
   const selectRef = useRef();
   const priceRef = useRef();
   const dateRef = useRef();
   const handelSumbmit = (e) => {
     e.preventDefault();
-    console.log(
-      nameRef.current.value,
-      categorieRef.current.value,
-      selectRef.current.value,
-      priceRef.current.value,
-      dateRef.current.value
-    );
+    console.log();
     document.getElementById("my-modal-6").checked = false;
+    nameRef.current.value = "";
+    selectRef.current.value = "Category";
+    priceRef.current.value = "";
+    dateRef.current.value = "";
   };
   return (
     <div onSubmit={handelSumbmit}>
@@ -39,18 +36,13 @@ const Expenses = () => {
                 placeholder="Name"
                 className="input input-bordered input-sm w-full max-w-xs"
               />
-              <input
-                ref={categorieRef}
-                type="text"
-                placeholder="Category"
-                className="input input-bordered input-sm w-full max-w-xs"
-              />
+
               <select
                 ref={selectRef}
-                className="select select-bordered select-sm w-full max-w-xs text-xs"
+                className="select select-bordered select-sm w-full max-w-xs h-full text-xs"
               >
-                <option disabled value={"Type"}>
-                  Type
+                <option disabled value={"Category"}>
+                  Category
                 </option>
                 <option value="expense">Expense</option>
                 <option value="income">Income</option>

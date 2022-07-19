@@ -4,11 +4,16 @@ import ShowAll from "../components/ShowAll";
 import Table from "../components/Table";
 import Chart from "../components/Chart";
 import RecuredExpenses from "../components/RecuredExpenses";
+import { GetData } from "../appContext/AppContext";
 
 const Profile = () => {
+  const { currentUser } = GetData();
   return (
     <div className="flex  overflow-auto gap-2">
       <div className="grow w-3/5">
+        <div className="pb-4 font-bold text-4xl">
+          Welcome {currentUser.displayName.split(" ").shift()}
+        </div>
         <Stats />
         <Chart />
         <ShowAll />

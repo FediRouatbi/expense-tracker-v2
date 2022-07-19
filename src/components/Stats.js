@@ -15,7 +15,7 @@ const Stats = () => {
             to="/expenses"
             className="btn btn-xs btn-success text-xs   p-1 sm:hidden"
           >
-            Add funds
+            Add Transaction
           </Link>
         </div>
 
@@ -32,7 +32,7 @@ const Stats = () => {
         to="/expenses"
         className="btn btn-md  items-center lg:btn-md btn-success  text-base lg:text-xl   p-1 hidden sm:flex"
       >
-        Add funds
+        Add Transaction
       </Link>
     </div>
   );
