@@ -13,7 +13,7 @@ import {
   sendPasswordResetEmail,
   deleteUser,
 } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const provider = new GoogleAuthProvider();
 const Expense = createContext();
@@ -24,11 +24,43 @@ const AppContext = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user")) || null
   );
-  const [transactions, setTransaction] = useState([]);
-  const storage = getStorage();
-  const storageRef = ref(storage, `Images/${currentUser?.uid}`);
+  const [transactions, setTransaction] = useState(
+    JSON.parse(sessionStorage.getItem("transactions")) || []
+  );
 
-  console.log(currentUser);
+  const storage = getStorage();
+
+  const storageRef = ref(storage, `Images/${currentUser?.uid}`);
+  console.log(currentUser, transactions);
+  const addTransaction = (id, category, ammount, date, note) => {
+    const newTransaction = {
+      id,
+      category,
+      ammount,
+      date,
+      note,
+    };
+    const data = [newTransaction, ...transactions];
+    updateTransactions(data);
+  };
+
+  const updateTransactions = async (newData) => {
+    const docRef = doc(db, "usersTransactions", currentUser?.uid);
+    await setDoc(docRef, { ...newData });
+    sessionStorage.setItem("transactions", JSON.stringify(newData));
+    setTransaction(newData);
+  };
+  const deleteTransaction = (e) => {
+    const data = transactions.filter((el) => el.id !== e.target.dataset.id);
+    updateTransactions(data);
+  };
+  const editData = (id, category, ammount, date, note) => {
+    const data = transactions.map((el) => {
+      if (el.id === id) return { id, category, ammount, date, note };
+      else return el;
+    });
+    updateTransactions(data);
+  };
   const updateProfileImage = async (image) => {
     try {
       await uploadBytes(storageRef, image);
@@ -40,6 +72,7 @@ const AppContext = ({ children }) => {
       throw Error(err);
     }
   };
+
   const resetPassword = async (email) => {
     try {
       await sendPasswordResetEmail(auth, email);
@@ -50,8 +83,11 @@ const AppContext = ({ children }) => {
   const signOutF = async () => {
     await signOut(auth);
     setCurrentUser(null);
+    setTransaction([]);
     sessionStorage.removeItem("user");
+    sessionStorage.removeItem("transactions");
   };
+
   const upName = async (name) => {
     try {
       await updateProfile(auth.currentUser, { displayName: name });
@@ -80,9 +116,16 @@ const AppContext = ({ children }) => {
     }
   };
   const updateUser = () => {
-    onAuthStateChanged(auth, () => {
+    onAuthStateChanged(auth, async () => {
       setCurrentUser(auth.currentUser);
       sessionStorage.setItem("user", JSON.stringify(auth.currentUser));
+      if (auth.currentUser) {
+        const docRef = doc(db, "usersTransactions", auth.currentUser?.uid);
+        const docSnap = await getDoc(docRef);
+        const data = Object.values(docSnap.data());
+        setTransaction(data);
+        sessionStorage.setItem("transactions", JSON.stringify(data));
+      }
     });
   };
   const setNewUser = (user) => {
@@ -97,6 +140,7 @@ const AppContext = ({ children }) => {
       throw Error(err);
     }
   };
+
   const SignInGoogle = async () => {
     await signInWithPopup(auth, provider);
     updateUser();
@@ -116,17 +160,11 @@ const AppContext = ({ children }) => {
   };
   const addData = async () => {
     try {
-      const data = {
-        first: "dfsAda",
-        last: "Lovedsflace",
-        born: 19549815,
-      };
-      const res = await setDoc(doc(db, "users", "fd"), data);
     } catch (err) {
       console.log(err);
     }
   };
-
+  addData();
   return (
     <Expense.Provider
       value={{
@@ -142,6 +180,10 @@ const AppContext = ({ children }) => {
         resetPassword,
         updateProfileImage,
         deleteProfile,
+        addTransaction,
+        transactions,
+        deleteTransaction,
+        editData,
       }}
     >
       {children}

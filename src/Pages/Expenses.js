@@ -1,17 +1,48 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Table from "../components/Table";
+import { GetData } from "../appContext/AppContext";
+import { v4 } from "uuid";
+
 const Expenses = () => {
-  const nameRef = useRef();
+  const [edit, setEdit] = useState(false);
+  const { addTransaction, transactions, editData } = GetData();
+  const noteRef = useRef();
   const selectRef = useRef();
-  const priceRef = useRef();
+  const ammountRef = useRef();
   const dateRef = useRef();
+
   const handelSumbmit = (e) => {
     e.preventDefault();
-    console.log();
+    const id = v4();
+    const category = selectRef.current.value;
+    const ammount = +ammountRef.current.value;
+    let date = dateRef.current.value;
+    const note = noteRef.current.value;
+    if (!date) date = new Date().toISOString().slice(0, 10);
+    if (edit) {
+      editData(edit, category, ammount, date, note);
+    } else addTransaction(id, category, ammount, date, note);
     document.getElementById("my-modal-6").checked = false;
-    nameRef.current.value = "";
-    selectRef.current.value = "Category";
-    priceRef.current.value = "";
+    setEdit(false);
+    clearAll();
+  };
+  const takeData = (e) => {
+    document.getElementById("my-modal-6").checked = true;
+    transactions.forEach((el) => {
+      if (el.id === e.target.dataset.id) {
+        setEdit(el.id);
+        noteRef.current.value = el.note;
+        selectRef.current.value = el.category;
+        ammountRef.current.value = el.ammount;
+        dateRef.current.value = el.createdAt;
+      }
+    });
+  };
+
+  const clearAll = () => {
+    noteRef.current.value = "";
+    selectRef.current.value = "";
+    ammountRef.current.value = "";
     dateRef.current.value = "";
   };
   return (
@@ -29,34 +60,37 @@ const Expenses = () => {
         <div className="modal-box">
           <form action="">
             <div className="flex flex-col gap-2 items-center pt-3">
-              <input
-                ref={nameRef}
-                required
-                type="text"
-                placeholder="Name"
-                className="input input-bordered input-sm w-full max-w-xs"
-              />
-
               <select
+                required={true}
                 ref={selectRef}
-                className="select select-bordered select-sm w-full max-w-xs h-full text-xs"
+                className=" text-base select select-bordered select-sm w-full max-w-xs h-full "
+                defaultValue={"Category"}
               >
-                <option disabled value={"Category"}>
-                  Category
+                <option hidden value=""></option>
+                <option value="Expense" className="text-base ">
+                  Expense
                 </option>
-                <option value="expense">Expense</option>
-                <option value="income">Income</option>
+                <option value="Income " className="cursor-pointer text-base">
+                  Income
+                </option>
               </select>
               <input
-                ref={priceRef}
+                ref={ammountRef}
                 required
                 type="number"
-                placeholder="Price"
+                placeholder="Ammount"
                 className="input input-bordered input-sm w-full max-w-xs"
               />
               <input
                 ref={dateRef}
                 type="date"
+                className="input input-bordered input-sm w-full max-w-xs"
+              />
+              <input
+                ref={noteRef}
+                required
+                type="text"
+                placeholder="Note"
                 className="input input-bordered input-sm w-full max-w-xs"
               />
             </div>
@@ -65,14 +99,22 @@ const Expenses = () => {
               <button htmlFor="my-modal-6" className="btn">
                 Confirm
               </button>
-              <label htmlFor="my-modal-6" className="btn">
+              <label
+                onClick={() => {
+                  clearAll();
+                  setEdit(false);
+                }}
+                htmlFor="my-modal-6"
+                className="btn"
+              >
                 Cancel
               </label>
             </div>
           </form>
         </div>
       </div>
-      <Table />
+
+      <Table takeData={takeData} edit={true} />
     </div>
   );
 };
