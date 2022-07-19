@@ -24,12 +24,14 @@ const AppContext = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(sessionStorage.getItem("user")) || null
   );
+  const [transactions, setTransaction] = useState([]);
   const storage = getStorage();
   const storageRef = ref(storage, `Images/${currentUser?.uid}`);
 
+  console.log(currentUser);
   const updateProfileImage = async (image) => {
     try {
-      await uploadBytes(storageRef, image[0]);
+      await uploadBytes(storageRef, image);
       const url = await getDownloadURL(storageRef);
       await updateProfile(auth.currentUser, { photoURL: url });
       const newUser = { ...currentUser, photoURL: url };
@@ -80,7 +82,6 @@ const AppContext = ({ children }) => {
   const updateUser = () => {
     onAuthStateChanged(auth, () => {
       setCurrentUser(auth.currentUser);
-      console.log(auth.currentUser);
       sessionStorage.setItem("user", JSON.stringify(auth.currentUser));
     });
   };
@@ -100,7 +101,6 @@ const AppContext = ({ children }) => {
     await signInWithPopup(auth, provider);
     updateUser();
   };
-  console.log(currentUser);
 
   const signup = async (email, password, name) => {
     try {

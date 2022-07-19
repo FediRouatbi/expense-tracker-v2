@@ -28,11 +28,6 @@ const Table = () => {
             <td>Canada</td>
             <td>Blue</td>
           </tr>
-          <tr>
-            <td>Ganderton</td>
-            <td>Canada</td>
-            <td>Blue</td>
-          </tr>
         </tbody>
       </table>
     </div>
