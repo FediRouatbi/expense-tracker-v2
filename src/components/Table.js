@@ -1,6 +1,6 @@
 import React from "react";
 import { GetData } from "../appContext/AppContext";
-import { editData } from "../Pages/Expenses";
+
 const Table = ({ takeData, edit }) => {
   const { transactions, deleteTransaction } = GetData();
 

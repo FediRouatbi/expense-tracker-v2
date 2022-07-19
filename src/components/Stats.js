@@ -1,13 +1,24 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { GetData } from "../appContext/AppContext";
+
 const Stats = () => {
+  const { transactions } = GetData();
+  console.log(transactions);
+  const income = transactions
+    .filter((el) => el.category === "Income")
+    .reduce((acc, curr) => acc + curr.ammount, 0);
+  const expense = transactions
+    .filter((el) => el.category === "Expense")
+    .reduce((acc, curr) => acc + curr.ammount, 0);
+  const balance = income - expense;
   return (
     <div className="flex  gap-2 items-center">
       <div className=" stats  bg-neutral  text-primary-content items-start  lg:p-4  p-2 lg:max-w-md max-w-xs w-full flex">
-        <div className="flex flex-col grow w-full">
+        <div className="flex flex-col grow w-full border-r-2 border-r-slate-300">
           <div className="stat p-1 justify-items-center  ">
             <div className=" text-sm xl:text-3xl"> Balance</div>
-            <div className="">$350,400</div>
+            <div className="">${balance.toFixed(2, 0)}</div>
             <div className="mt-2"></div>
           </div>
 
@@ -19,13 +30,13 @@ const Stats = () => {
           </Link>
         </div>
 
-        <div className="  stat p-1 justify-items-center w-fit">
+        <div className="  stat p-1 justify-items-center w-fit  ">
           <div className=" text-sm xl:text-3xl">Income</div>
-          <div className="">$100,400</div>
+          <div className="">${income.toFixed(2, 0)}</div>
         </div>
         <div className="stat p-1 justify-items-center w-fit ">
           <div className=" text-sm xl:text-3xl">Expense</div>
-          <div className="">$40,400</div>
+          <div className="">${expense.toFixed(2, 0)}</div>
         </div>
       </div>
       <Link
