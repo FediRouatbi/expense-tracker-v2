@@ -47,7 +47,7 @@ const Expenses = () => {
               />
               <select
                 ref={selectRef}
-                className="select select-bordered select-sm w-full max-w-xs"
+                className="select select-bordered select-sm w-full max-w-xs text-xs"
               >
                 <option disabled value={"Type"}>
                   Type

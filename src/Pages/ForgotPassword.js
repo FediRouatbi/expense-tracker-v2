@@ -1,13 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../appContext/AppContext";
+import { ToastContainer, toast } from "react-toastify";
+import { toastOptions } from "../appContext/appController";
 const ForgotPassword = () => {
-  const { currentUser } = GetData();
+  const emailRef = useRef();
+  const { currentUser, resetPassword } = GetData();
   const navTo = useNavigate();
   console.log(currentUser);
   useEffect(() => {
     if (currentUser) navTo("/");
   });
+  const send = async () => {
+    try {
+      const email = emailRef.current.value;
+      await resetPassword(email);
+      toast.success("Email send", toastOptions);
+      emailRef.current.value = "";
+    } catch (err) {
+      toast.error(err.message, toastOptions);
+    }
+  };
   return (
     !currentUser && (
       <div className="flex h-full w-full justify-center md:items-start ">
@@ -24,6 +37,7 @@ const ForgotPassword = () => {
                   Email :
                 </label>
                 <input
+                  ref={emailRef}
                   className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                   type=""
                   placeholder="mohamed@gmail.com"
@@ -32,6 +46,7 @@ const ForgotPassword = () => {
 
               <div>
                 <button
+                  onClick={send}
                   type="submit"
                   className="active:scale-95 w-full flex justify-center bg-sky-500  hover:bg-sky-600 text-gray-100 p-3  rounded-lg tracking-wide font-semibold   cursor-pointer  duration-200"
                 >
@@ -47,6 +62,7 @@ const ForgotPassword = () => {
             Back to Sign in form
           </Link>
         </div>
+        <ToastContainer />
       </div>
     )
   );

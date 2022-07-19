@@ -20,6 +20,7 @@ const Header = () => {
       <div className="navbar bg-base-100 fixed top-0 shadow-md font-bold z-20 h-16 px-8">
         <div className="flex-1  normal-case text-2xl pl-2">{path}</div>
         <div className="flex-none gap-2">
+          <div className="hidden sm:block">{currentUser.displayName}</div>
           <div className="dropdown dropdown-end">
             <label tabIndex="0" className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
@@ -53,7 +54,7 @@ const Header = () => {
             </ul>
           </div>
           <label className="swap swap-rotate">
-            <input type="checkbox" />
+            <input type="checkbox" className="hidden" />
 
             <svg
               className="swap-on fill-current w-10 h-10"
