@@ -1,14 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { GetData } from "../appContext/AppContext";
 import { FcGoogle } from "react-icons/fc";
+import { ToastContainer, toast } from "react-toastify";
+import { toastOptions } from "../appContext/appController";
 const SingIn = () => {
-  const { currentUser, SignInGoogle } = GetData();
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const { currentUser, SignInGoogle, signIn } = GetData();
   const navTo = useNavigate();
   useEffect(() => {
     if (currentUser) navTo("/");
   });
-
+  const signInWithEmailandPassword = async () => {
+    try {
+      const mail = emailRef.current.value;
+      const password = passwordRef.current.value;
+      await signIn(mail, password);
+    } catch (err) {
+      toast.error(err.message, toastOptions);
+    }
+  };
   return (
     !currentUser && (
       <div className="flex justify-center self-center items-center md:items-start h-full z-10 p-4 ">
@@ -23,6 +35,7 @@ const SingIn = () => {
                 Email
               </label>
               <input
+                ref={emailRef}
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                 type=""
                 placeholder="mail@gmail.com"
@@ -33,6 +46,7 @@ const SingIn = () => {
                 Password
               </label>
               <input
+                ref={passwordRef}
                 className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                 type=""
                 placeholder="Enter your password"
@@ -50,6 +64,7 @@ const SingIn = () => {
             </div>
             <div>
               <button
+                onClick={signInWithEmailandPassword}
                 type="submit"
                 className=" active:scale-95 w-full flex justify-center bg-sky-500  hover:bg-sky-600 text-gray-100 p-3  rounded-lg tracking-wide font-semibold   cursor-pointer transition ease-in duration-200"
               >
@@ -76,6 +91,7 @@ const SingIn = () => {
             </div>
           </div>
         </div>
+        <ToastContainer />
       </div>
     )
   );

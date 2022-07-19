@@ -1,4 +1,5 @@
 import "./App.css";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import Profile from "./Pages/Profile";

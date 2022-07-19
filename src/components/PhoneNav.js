@@ -31,7 +31,7 @@ const PhoneNav = () => {
         onClick={activateButton}
         id="phone-nav"
       >
-        <Link to="/" className="text-error group ">
+        <Link to="/" className="text-error group  bg-sky-100">
           <FcHome size={30} className="group-active:scale-95" />
         </Link>
         <Link to="/expenses" className="text-error group ">
