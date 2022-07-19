@@ -70,7 +70,7 @@ const Expenses = () => {
                 <option value="Expense" className="text-base ">
                   Expense
                 </option>
-                <option value="Income " className="cursor-pointer text-base">
+                <option value="Income" className="cursor-pointer text-base">
                   Income
                 </option>
               </select>
