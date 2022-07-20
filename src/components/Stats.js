@@ -4,7 +4,6 @@ import { GetData } from "../appContext/AppContext";
 
 const Stats = () => {
   const { transactions } = GetData();
-  console.log(transactions);
   const income = transactions
     .filter((el) => el.category === "Income")
     .reduce((acc, curr) => acc + curr.ammount, 0);

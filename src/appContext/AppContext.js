@@ -31,7 +31,7 @@ const AppContext = ({ children }) => {
   const storage = getStorage();
 
   const storageRef = ref(storage, `Images/${currentUser?.uid}`);
-  console.log(currentUser, transactions);
+
   const addTransaction = (id, category, ammount, date, note) => {
     const newTransaction = {
       id,
@@ -51,7 +51,9 @@ const AppContext = ({ children }) => {
     setTransaction(newData);
   };
   const deleteTransaction = (e) => {
-    const data = transactions.filter((el) => el.id !== e.target.dataset.id);
+    const data = transactions.filter(
+      (el) => el.id !== e.currentTarget.dataset.id
+    );
     updateTransactions(data);
   };
   const editData = (id, category, ammount, date, note) => {
@@ -110,7 +112,6 @@ const AppContext = ({ children }) => {
       await updateEmail(auth.currentUser, newEmail);
       const newUser = { ...currentUser, email: newEmail };
       setNewUser(newUser);
-      console.log("From upmail");
     } catch (err) {
       throw Error(err);
     }
