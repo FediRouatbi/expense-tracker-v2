@@ -7,7 +7,7 @@ const ForgotPassword = () => {
   const emailRef = useRef();
   const { currentUser, resetPassword } = GetData();
   const navTo = useNavigate();
-  console.log(currentUser);
+
   useEffect(() => {
     if (currentUser) navTo("/");
   });

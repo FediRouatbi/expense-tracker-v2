@@ -25,22 +25,22 @@ const Settings = () => {
     try {
       if (image) {
         await updateProfileImage(image);
-        toast.success("Image change ", toastOptions);
+        toast.success("Image Updated!", toastOptions);
         newImgRef.current.value = "";
       }
       if (mail) {
         await upMail(mail);
-        toast.success("Email change", toastOptions);
+        toast.success("Email Updated!", toastOptions);
         newMailRef.current.value = "";
       }
       if (name) {
         await upName(name);
-        toast.success("Name change", toastOptions);
+        toast.success("Name Updated!", toastOptions);
         newNameRef.current.value = "";
       }
       if (password) {
         await upPassword(password);
-        toast.success("Password change", toastOptions);
+        toast.success("Password Updated!", toastOptions);
         newPasswordRef.current.value = "";
       }
       if (!password && !mail && !name && !image)
@@ -82,7 +82,7 @@ const Settings = () => {
           />
         </div>
         <div>
-          <div className="pb-2">Change Name :</div>
+          <div className="pb-2">Change Username :</div>
           <input
             type="text"
             placeholder={currentUser.displayName}

@@ -9,7 +9,8 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-
+import { data, sortData } from "../appContext/appController";
+import { GetData } from "../appContext/AppContext";
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -18,8 +19,7 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-
-export const options = {
+const options = {
   responsive: true,
   plugins: {
     legend: {
@@ -32,25 +32,12 @@ export const options = {
   },
 };
 
-const labels = ["January", "February", "March", "April", "May", "June", "July"];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: "Expenses",
-      data: [4, 5, 6, 9, 8, 50, 3, 6],
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Income",
-      data: [4, 5, 6, 9, 8, 2, 3, 6],
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-
 const Chart = () => {
+  const { transactions } = GetData();
+  const { expense, income } = sortData(transactions);
+
+  data.datasets[0].data = expense;
+  data.datasets[1].data = income;
   return (
     <div className="w-full">
       <div className="mt-3 h-64 w-11/12 mx-auto">

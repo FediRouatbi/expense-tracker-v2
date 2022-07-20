@@ -16,7 +16,7 @@ const Profile = () => {
         </div>
         <Stats />
         <Chart />
-        <ShowAll />
+        <ShowAll latest={true} />
         <Table />
       </div>
       <div className="w-[250px] lg:w-[300px] hidden md:block">

@@ -29,12 +29,12 @@ const Expenses = () => {
   const takeData = (e) => {
     document.getElementById("my-modal-6").checked = true;
     transactions.forEach((el) => {
-      if (el.id === e.target.dataset.id) {
+      if (el.id === e.currentTarget.dataset.id) {
         setEdit(el.id);
         noteRef.current.value = el.note;
         selectRef.current.value = el.category;
         ammountRef.current.value = el.ammount;
-        dateRef.current.value = el.createdAt;
+        dateRef.current.value = el.date;
       }
     });
   };
@@ -113,8 +113,9 @@ const Expenses = () => {
           </form>
         </div>
       </div>
-
-      <Table takeData={takeData} edit={true} />
+      <div className="max-w-4xl">
+        <Table takeData={takeData} edit={true} />
+      </div>
     </div>
   );
 };

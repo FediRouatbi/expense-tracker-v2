@@ -80,7 +80,7 @@ const SideBar = () => {
             </span>
 
             {transition((style, item) =>
-              item ? <animated.span style={style}> Expenses</animated.span> : ""
+              item ? <animated.span style={style}> Transactions</animated.span> : ""
             )}
           </Link>
           <Link
