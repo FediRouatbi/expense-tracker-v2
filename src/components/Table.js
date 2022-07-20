@@ -3,7 +3,7 @@ import { GetData } from "../appContext/AppContext";
 
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
-import { useTransition, animated } from "react-spring";
+
 const Table = ({ takeData, edit }) => {
   const { transactions, deleteTransaction } = GetData();
   let data = transactions;
@@ -11,8 +11,8 @@ const Table = ({ takeData, edit }) => {
   return (
     <div className="overflow-auto mt-3 mb-10 ">
       <div className="overflow-x-auto relative  w-full  shadow-lg rounded-lg  border-2 border-zinc-500">
-        <table className=" w-full text-sm text-left text-gray-500 dark:text-gray-400">
-          <thead className=" text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400 ">
+        <table className=" w-full text-sm text-left ">
+          <thead className=" text-xs uppercase  ">
             <tr>
               <th scope="col" className="py-3 px-6">
                 Date
@@ -44,11 +44,11 @@ const Table = ({ takeData, edit }) => {
             {data.map((el) => (
               <tr
                 key={el.id}
-                className={`   dark:bg-gray-800 dark:border-gray-700  last:border-none border-b-2 border-gray-300`}
+                className={`   dark:border-gray-700  last:border-none border-b-2 border-gray-300`}
               >
                 <th
                   scope="row"
-                  className=" py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  className=" py-4 px-6 font-medium  whitespace-nowrap "
                 >
                   {el.date}
                 </th>
@@ -56,7 +56,7 @@ const Table = ({ takeData, edit }) => {
                   <span
                     className={`${
                       el.category === "Income" ? " bg-blue-500" : "bg-red-500"
-                    } p-1 rounded-md text-white font-medium`}
+                    } p-1 rounded-md  font-medium`}
                   >
                     ${el.ammount}
                   </span>

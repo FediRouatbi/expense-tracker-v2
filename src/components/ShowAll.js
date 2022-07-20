@@ -7,7 +7,7 @@ const ShowAll = ({ latest }) => {
       <div>{latest ? "Latest" : "Recuring"} Expenses :</div>
       <Link
         to="/expenses"
-        className="hover:text-sky-300 hover:underline-offset-2 hover:underline"
+        className="  underline  underline-offset-2  hover:text-sky-300"
       >
         View All
       </Link>

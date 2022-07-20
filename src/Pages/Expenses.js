@@ -17,7 +17,7 @@ const Expenses = () => {
     const category = selectRef.current.value;
     const ammount = +ammountRef.current.value;
     let date = dateRef.current.value;
-    const note = noteRef.current.value;
+    const note = noteRef.current.value.trim();
     if (!date) date = new Date().toISOString().slice(0, 10);
     if (edit) {
       editData(edit, category, ammount, date, note);

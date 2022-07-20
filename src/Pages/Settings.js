@@ -25,22 +25,22 @@ const Settings = () => {
     try {
       if (image) {
         await updateProfileImage(image);
-        toast.success("Image Updated!", toastOptions);
+        toast.success("Image Updated successfully 😄", toastOptions);
         newImgRef.current.value = "";
       }
       if (mail) {
         await upMail(mail);
-        toast.success("Email Updated!", toastOptions);
+        toast.success("Email Updated successfully 😄", toastOptions);
         newMailRef.current.value = "";
       }
       if (name) {
         await upName(name);
-        toast.success("Name Updated!", toastOptions);
+        toast.success("Name Updated successfully 😄", toastOptions);
         newNameRef.current.value = "";
       }
       if (password) {
         await upPassword(password);
-        toast.success("Password Updated!", toastOptions);
+        toast.success("Password Updated successfully 😄", toastOptions);
         newPasswordRef.current.value = "";
       }
       if (!password && !mail && !name && !image)

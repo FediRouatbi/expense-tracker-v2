@@ -11,7 +11,7 @@ const SignUp = () => {
   const { currentUser, signup } = GetData();
   useEffect(() => {
     if (currentUser) navTo("/");
-  }, []);
+  }, [currentUser]);
 
   const navTo = useNavigate();
 
@@ -36,23 +36,23 @@ const SignUp = () => {
       <div className="flex justify-center self-center items-center md:items-start z-10 p-4 h-full">
         <div className="  mx-auto rounded-2xl w-100 md:w-96 ">
           <div className="mb-4">
-            <h3 className="font-semibold text-2xl text-gray-800">Sign Up </h3>
+            <h3 className="font-semibold text-2xl ">Sign Up </h3>
           </div>
           <div className="space-y-3">
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700 tracking-wide">
+              <label className="text-sm font-medium tracking-wide">
                 Full name :
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
                 type=""
-                placeholder="mohamed ali"
+                placeholder="username"
                 ref={nameRef}
               />
             </div>
 
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700 tracking-wide">
+              <label className="text-sm font-medium  tracking-wide">
                 Email :
               </label>
               <input
@@ -63,7 +63,7 @@ const SignUp = () => {
               />
             </div>
             <div className="space-y-1">
-              <label className=" text-sm font-medium text-gray-700 tracking-wide">
+              <label className=" text-sm font-medium  tracking-wide">
                 Password :
               </label>
               <input
@@ -74,7 +74,7 @@ const SignUp = () => {
               />
             </div>
             <div className="space-y-1">
-              <label className="text-sm font-medium text-gray-700 tracking-wide">
+              <label className="text-sm font-medium  tracking-wide">
                 Confirm Password :
               </label>
               <input

@@ -20,15 +20,32 @@ ChartJS.register(
   Legend
 );
 const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top",
+  legend: {
+    labels: {
+      fontColor: "#f00",
     },
-    title: {
-      display: true,
-      text: "Weekly Transaction",
-    },
+  },
+  title: {
+    display: true,
+    fontColor: "blue",
+    text: "Custom Chart Title",
+  },
+  scales: {
+    yAxes: [
+      {
+        ticks: {
+          beginAtZero: true,
+          fontColor: "red",
+        },
+      },
+    ],
+    xAxes: [
+      {
+        ticks: {
+          fontColor: "green",
+        },
+      },
+    ],
   },
 };
 
@@ -39,8 +56,8 @@ const Chart = () => {
   data.datasets[0].data = expense;
   data.datasets[1].data = income;
   return (
-    <div className="w-full">
-      <div className="mt-3 h-64 w-11/12 mx-auto">
+    <div className="w-full ">
+      <div className="mt-3 h-64 w-11/12 mx-auto ">
         <Bar options={(options, { maintainAspectRatio: false })} data={data} />
       </div>
     </div>

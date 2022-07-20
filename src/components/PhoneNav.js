@@ -11,18 +11,18 @@ const PhoneNav = () => {
     if (!currentUser) return;
     const [...data] = document.getElementById("phone-nav").children;
     data.forEach((el) => {
-      el.classList.remove("bg-sky-100");
+      el.classList.remove("bg-zinc-500/50");
       if (el.href.slice(21) === location.pathname)
-        el.classList.add("bg-sky-100");
+        el.classList.add("bg-zinc-500/50");
     });
-  }, []);
+  }, [location]);
 
   const activateButton = (e) => {
     if (e.target === e.currentTarget) return;
     e.currentTarget.querySelectorAll("a").forEach((el) => {
-      el.classList.remove("bg-sky-100");
+      el.classList.remove("bg-zinc-500/50");
     });
-    e.target.closest("a").classList.add("bg-sky-100");
+    e.target.closest("a").classList.add("bg-zinc-500/50");
   };
   return (
     currentUser && (
@@ -31,7 +31,7 @@ const PhoneNav = () => {
         onClick={activateButton}
         id="phone-nav"
       >
-        <Link to="/" className="text-error group  bg-sky-100">
+        <Link to="/" className="text-error group  bg-zinc-500/50">
           <FcHome size={30} className="group-active:scale-95" />
         </Link>
         <Link to="/expenses" className="text-error group ">

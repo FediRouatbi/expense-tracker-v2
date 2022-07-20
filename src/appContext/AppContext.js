@@ -124,8 +124,22 @@ const AppContext = ({ children }) => {
         const docRef = doc(db, "usersTransactions", auth.currentUser?.uid);
         const docSnap = await getDoc(docRef);
         const data = Object.values(docSnap.data());
+        //sort data
+        const sortedData = data.map((el) => {
+          const sorted = Object.keys(el)
+            .sort()
+            .reduce(
+              (acc, key) => ({
+                ...acc,
+                [key]: el[key],
+              }),
+              {}
+            );
+          return sorted;
+        });
+
         setTransaction(data);
-        sessionStorage.setItem("transactions", JSON.stringify(data));
+        sessionStorage.setItem("transactions", JSON.stringify(sortedData));
       }
     });
   };
@@ -162,7 +176,7 @@ const AppContext = ({ children }) => {
   const addData = async () => {
     try {
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   addData();
