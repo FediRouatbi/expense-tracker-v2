@@ -116,13 +116,14 @@ const AppContext = ({ children }) => {
       throw Error(err);
     }
   };
-  const updateUser = () => {
+  const updateUser = async () => {
     onAuthStateChanged(auth, async () => {
       setCurrentUser(auth.currentUser);
       sessionStorage.setItem("user", JSON.stringify(auth.currentUser));
       if (auth.currentUser) {
         const docRef = doc(db, "usersTransactions", auth.currentUser?.uid);
         const docSnap = await getDoc(docRef);
+        if (!docSnap._document) return;
         const data = Object.values(docSnap.data());
         //sort data
         const sortedData = data.map((el) => {
@@ -150,7 +151,7 @@ const AppContext = ({ children }) => {
   const signIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      updateUser();
+      await updateUser();
     } catch (err) {
       throw Error(err);
     }
@@ -158,14 +159,14 @@ const AppContext = ({ children }) => {
 
   const SignInGoogle = async () => {
     await signInWithPopup(auth, provider);
-    updateUser();
+    await updateUser();
   };
 
   const signup = async (email, password, name) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName: name });
-      updateUser();
+      await updateUser();
     } catch (err) {
       throw Error(err);
     }
@@ -173,13 +174,7 @@ const AppContext = ({ children }) => {
   const deleteProfile = async () => {
     return deleteUser(auth.currentUser);
   };
-  const addData = async () => {
-    try {
-    } catch (err) {
-      console.error(err);
-    }
-  };
-  addData();
+
   return (
     <Expense.Provider
       value={{
