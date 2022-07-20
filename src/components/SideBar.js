@@ -4,7 +4,7 @@ import { BiLogOut } from "react-icons/bi";
 import { Link, useLocation } from "react-router-dom";
 import { useTransition, animated } from "react-spring";
 import { GetData } from "../appContext/AppContext";
-const SideBar = () => {
+const SideBar = ({ dark }) => {
   const { currentUser, signOutF } = GetData();
   const { pathname } = useLocation();
 
@@ -21,9 +21,10 @@ const SideBar = () => {
   return (
     currentUser && (
       <div
+        data-theme={`${dark ? "dracula" : "autumn"}`}
         className={`${
           open ? "" : "translate"
-        } relative hidden md:block w-44 lg:w-64 duration-500    bg-sky-100 text-black font-bold p-4`}
+        } relative hidden md:block w-44 lg:w-64 duration-500   font-bold p-4`}
       >
         <ul className={` flex flex-col   gap-4 text-lg h-full  `}>
           <label
@@ -59,8 +60,8 @@ const SideBar = () => {
           <Link
             to="/"
             className={`${
-              pathname === "/" && "bg-sky-200"
-            } flex gap-2 items-center p-1  rounded hover:bg-sky-200 `}
+              pathname === "/" && "bg-zinc-500/50"
+            } flex gap-2 items-center p-1  rounded hover:bg-zinc-500 `}
           >
             <span className="">
               <FcHome size={30} />
@@ -72,22 +73,26 @@ const SideBar = () => {
           <Link
             to="/expenses"
             className={`${
-              pathname === "/expenses" && "bg-sky-200"
-            } flex gap-2 items-center p-1  rounded hover:bg-sky-200 `}
+              pathname === "/expenses" && "bg-zinc-500"
+            } flex gap-2 items-center p-1  rounded hover:bg-zinc-500 `}
           >
             <span>
               <FcBinoculars size={30} />
             </span>
 
             {transition((style, item) =>
-              item ? <animated.span style={style}> Transactions</animated.span> : ""
+              item ? (
+                <animated.span style={style}> Transactions</animated.span>
+              ) : (
+                ""
+              )
             )}
           </Link>
           <Link
             to="/settings"
             className={`${
-              pathname === "/settings" && "bg-sky-200"
-            } flex gap-2 items-center p-1  rounded hover:bg-sky-200 `}
+              pathname === "/settings" && "bg-zinc-500"
+            } flex gap-2 items-center p-1  rounded hover:bg-zinc-500`}
           >
             <span>
               <FcSettings size={30} />
@@ -99,7 +104,7 @@ const SideBar = () => {
           </Link>
           <button
             onClick={signOutF}
-            className=" mt-auto flex gap-2 items-center p-1 hover:bg-sky-200 rounded"
+            className=" mt-auto flex gap-2 items-center p-1 hover:bg-zinc-500 rounded"
           >
             <span>
               <BiLogOut size={30} />

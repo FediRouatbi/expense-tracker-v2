@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { GetData } from "../appContext/AppContext";
 import userImg from "../img/user.jpg";
-const Header = () => {
+const Header = ({ setDark, dark }) => {
   const { currentUser, signOutF } = GetData();
 
   const location = useLocation();
@@ -17,7 +17,10 @@ const Header = () => {
   };
   return (
     currentUser && (
-      <div className="navbar bg-base-100 fixed top-0 shadow-md font-bold z-20 h-16 px-8">
+      <div
+        data-theme={`${dark ? "dracula" : "light"}`}
+        className="navbar bg-base-100 fixed top-0 shadow-md font-bold z-20 h-16 px-8"
+      >
         <div className="flex-1  normal-case text-2xl pl-2">{path}</div>
         <div className="flex-none gap-2">
           <div className="hidden sm:block">{currentUser.displayName}</div>
@@ -54,7 +57,11 @@ const Header = () => {
             </ul>
           </div>
           <label className="swap swap-rotate">
-            <input type="checkbox" className="hidden" />
+            <input
+              type="checkbox"
+              className="hidden"
+              onClick={() => setDark((prv) => !prv)}
+            />
 
             <svg
               className="swap-on fill-current w-10 h-10"

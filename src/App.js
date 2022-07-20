@@ -12,15 +12,21 @@ import SignUp from "./Pages/SignUp";
 import ForgotPassword from "./Pages/ForgotPassword";
 import AppContext from "./appContext/AppContext";
 import PrivateRoute from "./Pages/PrivateRoute";
+import { useState } from "react";
 
 function App() {
+  const [dark, setDark] = useState(false);
+
   return (
     <AppContext>
       <BrowserRouter>
-        <div className="  py-16 md:pb-0  h-screen ">
-          <Header />
+        <div
+          data-theme={`${dark ? "business" : "light"}`}
+          className={`  py-16 md:pb-0  h-screen  transition-all ease-in-out duration-500`}
+        >
+          <Header setDark={setDark} dark={dark} />
           <div className="mx-auto  w-11/12  md:w-full  h-full   md:flex gap-2">
-            <SideBar />
+            <SideBar dark={dark} />
             <div className="grow md:p-10 md:pb-0 overflow-auto h-full py-4">
               <Routes>
                 <Route path="/" element={<PrivateRoute />}>
