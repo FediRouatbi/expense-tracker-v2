@@ -75,7 +75,7 @@ const Settings = () => {
         <div>
           <div className="pb-2">Change Email :</div>
           <input
-            type="text"
+            type="email"
             placeholder={currentUser.email}
             className="input input-bordered input-sm w-full max-w-xs"
             ref={newMailRef}
@@ -93,7 +93,7 @@ const Settings = () => {
         <div className="pb-5">
           <div className="pb-2">Change Password :</div>
           <input
-            type="text"
+            type="password"
             placeholder="Type here"
             className="input input-bordered input-sm w-full max-w-xs"
             ref={newPasswordRef}

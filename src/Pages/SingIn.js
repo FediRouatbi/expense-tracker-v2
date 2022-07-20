@@ -35,7 +35,7 @@ const SingIn = () => {
               <input
                 ref={emailRef}
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
+                type="email"
                 placeholder="mail@gmail.com"
               />
             </div>
@@ -46,7 +46,7 @@ const SingIn = () => {
               <input
                 ref={passwordRef}
                 className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
+                type="password"
                 placeholder="Enter your password"
               />
             </div>

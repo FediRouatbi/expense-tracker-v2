@@ -21,7 +21,8 @@ const SignUp = () => {
     const password = passwordRef.current.value;
     const confirmPassword = confirmPasswordRef.current.value;
     try {
-      if (password !== confirmPassword) throw Error("Password mesh kif kif ");
+      if (password !== confirmPassword)
+        throw Error("Password do not match 😯 ");
 
       await signup(email, password, name);
 
@@ -45,7 +46,7 @@ const SignUp = () => {
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
+                type="text"
                 placeholder="username"
                 ref={nameRef}
               />
@@ -57,7 +58,7 @@ const SignUp = () => {
               </label>
               <input
                 className=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
+                type="email"
                 placeholder="mail@gmail.com"
                 ref={emailRef}
               />
@@ -68,7 +69,7 @@ const SignUp = () => {
               </label>
               <input
                 className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
+                type="password"
                 placeholder="Password"
                 ref={passwordRef}
               />
@@ -79,7 +80,7 @@ const SignUp = () => {
               </label>
               <input
                 className="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                type=""
+                type="password"
                 placeholder="Confirm  Password"
                 ref={confirmPasswordRef}
               />

@@ -12,7 +12,7 @@ const Profile = () => {
     <div className="flex  overflow-auto gap-2">
       <div className="grow w-3/5">
         <div className="pb-4 font-bold text-2xl md:text-4xl">
-          Welcome {currentUser.displayName.split(" ").shift()}
+          Welcome {currentUser?.displayName?.split(" ").shift() || ""}
         </div>
         <Stats />
         <Chart />
